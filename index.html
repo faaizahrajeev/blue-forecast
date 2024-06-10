@@ -11,10 +11,37 @@
 
 <!-- to create this div, just type .card or to create for search, .search etc-->
 <div class="card">
+
     <div class="search">
         <!-- take an input - the city name -->
         <input type="text" placeholder="city name" spellcheck="false">
         <button><img src="images/search.png"></button>
+    </div>
+
+    <div class="weather">
+        <img src="images/rain.png" class="weather-icon">
+        <!-- type h1.temp to create a header in the temp class -->
+        <h1 class="temp">22°C</h1>
+        <!-- similarly, h2.city -->
+        <h2 class="city">New York</h2>
+
+        <div class="details">
+            <div class="col">
+                <img src="images/humidity.png">
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <img src="images/wind.png">
+                <div>
+                    <p class="wind">15 km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

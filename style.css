@@ -5,10 +5,80 @@
     box-sizing: border-box;
 }
 
+
+
 body{
     background-color: lightblue;
 }
 
+
+
 .card{
+    width: 90%;
+    max-width: 470px;
+    background: radial-gradient(circle at -2.2% -3.8%, rgba(255, 227, 2, 0.41) 0%, rgb(59, 188, 241) 100.2%);
+    /* text color - white */
+    color: #fff;
+    /* top margin is 100px auto (left and right) centers element within the container 
+    bottom margin is 0 */
+    margin: 100px auto 0;
+    /* make the corners round */
+    border-radius: 20px;
+    /* space inside the card */
+    padding: 40px 35px;
+    text-align: center;
+}
+
+
+.search{
+    width: 100%;
+    /* when you resize your window, its gonna flexibly move the contents */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.search input{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
     
+.search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50% /* circle */;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.search button img{
+    width: 16px;
+}
+
+.weather-icon{
+    width: 170px;
+    margin-top: 30px;
+}
+
+.weather h1{
+    font-size: 80px;
+    font-weight: 500;
+}
+
+.weather h2{
+    font-size: 45px;
+    font-weight: 400;
+    /* move the element 10 pixels upwards */
+    margin-top: -10px;
 }
