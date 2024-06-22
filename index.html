@@ -1,49 +1,81 @@
 <!-- doctype is just telling the system that its html -->
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- viewport is the user's visible area -->
-        <title>Blue Forecast </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    
-    <body>
 
-<!-- to create this div, just type .card or to create for search, .search etc-->
-<div class="card">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport is the user's visible area -->
+    <title>Blue Forecast </title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <div class="search">
-        <!-- take an input - the city name -->
-        <input type="text" placeholder="city name" spellcheck="false">
-        <button><img src="images/search.png"></button>
-    </div>
+<body>
 
-    <div class="weather">
-        <img src="images/rain.png" class="weather-icon">
-        <!-- type h1.temp to create a header in the temp class -->
-        <h1 class="temp">22°C</h1>
-        <!-- similarly, h2.city -->
-        <h2 class="city">New York</h2>
+    <!-- to create this div, just type .card or to create for search, .search etc-->
+    <div class="card">
 
-        <div class="details">
-            <div class="col">
-                <img src="images/humidity.png">
-                <div>
-                    <p class="humidity">50%</p>
-                    <p>Humidity</p>
+        <div class="search">
+            <!-- take an input - the city name -->
+            <input type="text" placeholder="city name" spellcheck="false">
+            <button><img src="images/search.png"></button>
+        </div>
+
+        <div class="weather">
+            <img src="images/rain.png" class="weather-icon">
+            <!-- type h1.temp to create a header in the temp class -->
+            <h1 class="temp">22°C</h1>
+            <!-- similarly, h2.city -->
+            <h2 class="city">New York</h2>
+
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <img src="images/wind.png">
-                <div>
-                    <p class="wind">15 km/h</p>
-                    <p>Wind Speed</p>
+                <div class="col">
+                    <img src="images/wind.png">
+                    <div>
+                        <p class="wind">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-    </body>
+
+    <script>
+        
+        const apiKey = "64b90567ee5968395121d5bd80ba9ca9";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai"
+        
+        // async returns promises and await pauses execution until the promise is resolved
+        async function checkWeather(){
+
+            /* here you use backquotes `` not '' 
+            ${} in `` is a template literal it allows you to concatenate
+            fetch api accesses resources across the n/w, it accepts the url (or request object) and
+            options where you can add properties like the credentials, headers, etc
+            here, await fetch(url) starts an HTTP request to the url 
+            because of the await keyword, the async function is paused until the request is complete
+            once request is done, response is assigned to the object which could be json, text etc*/
+            const response = await fetch(apiUrl + `&appid=${apiKey}`);
+
+            /* what's the diff btw const and var?
+            const has a block-level scope, var has a function level scope, can be reassigned
+            now the response that we get will be in json format (mentioned in api documentation) */
+            var data = await response.json();
+
+            console.log(data);
+        }
+
+    checkWeather();
+
+    </script>
+
+</body>
+
 </html>
