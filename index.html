@@ -19,6 +19,11 @@
             <button><img src="images/search.png"></button>
         </div>
 
+        <div class="error">
+            <br>
+            <p>Invalid City Name</p>
+        </div>
+
         <div class="weather">
             <img src="images/rain.png" class="weather-icon">
             <!-- type h1.temp to create a header in the temp class -->
@@ -69,38 +74,47 @@
             once request is done, response is assigned to the object which could be json, text etc*/
             const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-            /* what's the diff btw const and var?
-            const has a block-level scope, var has a function level scope, can be reassigned
-            now the response that we get will be in json format (mentioned in api documentation) */
-            var data = await response.json();
+            // to check if the city is valid
+            if (response.status == 404) {
+                // to display the error div
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            } else {
 
-            console.log(data);
 
-            /* select a class to replace its html content with the data from the api
-            document is the current web page 
-            .city is the class*/
-            document.querySelector(".city").innerHTML = data.name;
-            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-            document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+                /* what's the diff btw const and var?
+                const has a block-level scope, var has a function level scope, can be reassigned
+                now the response that we get will be in json format (mentioned in api documentation) */
+                var data = await response.json();
 
-            // to change the weather icon
-            // you can find clouds or clear etc in weather->main
-            if (data.weather[0].main == "Clouds") {
-                weatherIcon.src = "images/clouds.png";
-            } else if (data.weather[0].main == "Clear") {
-                weatherIcon.src = "images/clear.png";
-            } else if (data.weather[0].main == "Rain") {
-                weatherIcon.src = "images/rain.png";
-            } else if (data.weather[0].main == "Snow") {
-                weatherIcon.src = "images/snow.png";
-            } else if (data.weather[0].main == "Drizzle") {
-                weatherIcon.src = "images/drizzle.png";
-            } else if (data.weather[0].main == "Mist") {
-                weatherIcon.src = "images/mist.png";
-            } 
-            
-            
+                /* select a class to replace its html content with the data from the api
+                document is the current web page 
+                .city is the class*/
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+                // to change the weather icon
+                // you can find clouds or clear etc in weather->main
+                if (data.weather[0].main == "Clouds") {
+                    weatherIcon.src = "images/clouds.png";
+                } else if (data.weather[0].main == "Clear") {
+                    weatherIcon.src = "images/clear.png";
+                } else if (data.weather[0].main == "Rain") {
+                    weatherIcon.src = "images/rain.png";
+                } else if (data.weather[0].main == "Snow") {
+                    weatherIcon.src = "images/snow.png";
+                } else if (data.weather[0].main == "Drizzle") {
+                    weatherIcon.src = "images/drizzle.png";
+                } else if (data.weather[0].main == "Mist") {
+                    weatherIcon.src = "images/mist.png";
+                }
+
+                // to display the weather div
+                document.querySelector(".weather").style.display = "block";
+                document.querySelector(".error").style.display = "none";
+            }
         }
 
         // instead of function (), you can write ()=>{ also

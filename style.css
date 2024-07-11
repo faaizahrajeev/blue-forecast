@@ -111,3 +111,13 @@ body{
     margin-top: -6px;
 
 }
+
+.weather{
+    /* to hide the weather details before the user enters a city*/
+    display: none;
+}
+
+.error{
+    /* to hide the error message before the user enters a city*/
+    display: none;
+}
