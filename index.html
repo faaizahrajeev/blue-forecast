@@ -48,14 +48,16 @@
 
 
     <script>
-        
+
         const apiKey = "64b90567ee5968395121d5bd80ba9ca9";
         const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 
+        // select the input field
         const searchBox = document.querySelector(".search input");
-        
+        const searchBtn = document.querySelector(".search button");
+
         // async returns promises and await pauses execution until the promise is resolved
-        async function checkWeather(city){
+        async function checkWeather(city) {
 
             /* here you use backquotes `` not '' 
             ${} in `` is a template literal it allows you to concatenate
@@ -72,18 +74,22 @@
             var data = await response.json();
 
             console.log(data);
-            
+
             /* select a class to replace its html content with the data from the api
             document is the current web page 
             .city is the class*/
             document.querySelector(".city").innerHTML = data.name;
-            document.querySelector(".temp").innerHTML = Math.round(data.main.temp)  + "°C";
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+            
         }
 
-    checkWeather();
-
+        // instead of function (), you can write ()=>{ also
+        searchBtn.addEventListener("click", function () {
+            checkWeather(searchBox.value);
+        });
     </script>
 
 </body>
