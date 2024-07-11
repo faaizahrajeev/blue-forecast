@@ -55,6 +55,7 @@
         // select the input field
         const searchBox = document.querySelector(".search input");
         const searchBtn = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weather-icon");
 
         // async returns promises and await pauses execution until the promise is resolved
         async function checkWeather(city) {
@@ -83,6 +84,22 @@
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
 
+            // to change the weather icon
+            // you can find clouds or clear etc in weather->main
+            if (data.weather[0].main == "Clouds") {
+                weatherIcon.src = "images/clouds.png";
+            } else if (data.weather[0].main == "Clear") {
+                weatherIcon.src = "images/clear.png";
+            } else if (data.weather[0].main == "Rain") {
+                weatherIcon.src = "images/rain.png";
+            } else if (data.weather[0].main == "Snow") {
+                weatherIcon.src = "images/snow.png";
+            } else if (data.weather[0].main == "Drizzle") {
+                weatherIcon.src = "images/drizzle.png";
+            } else if (data.weather[0].main == "Mist") {
+                weatherIcon.src = "images/mist.png";
+            } 
+            
             
         }
 
